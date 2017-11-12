@@ -1,0 +1,13 @@
+[Unit]
+Description=Create Virtual Function devices
+Before=network-pre.target
+Wants=network-pre.target
+
+[Service]
+EnvironmentFile=-/etc/sysconfig/sriov-createvf
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=-/usr/bin/sriov-createvf ${DEVICES}
+
+[Install]
+WantedBy=multi-user.target
